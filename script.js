@@ -1,9 +1,6 @@
 let data = [];
 
-document.addEventListener('DOMContentLoaded', function () {
-    var form = document.getElementById('form');
-    form.addEventListener('submit', function(event){
-        event.preventDefault();
+function login() {
 
         const name = document.getElementById('name').value.trim();
         const age = document.getElementById('age').value.trim();
@@ -36,29 +33,19 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('age').value = '';
         console.log(data);
         updateTable();
-    });
-});
-
-// function updateTable() {
-//     let tableContent = data.map((item) => {
-//         return `<tr>
-//         <td>${item.name}</td>
-//         <td>${item.age}</td>
-//         </tr>`;
-//     }).join('');
-
-//     document.getElementById("table-name").innerHTML = tableContent;
-// }
-     function updateTable(){
+    };
+        function updateTable(){
          let v=""
        data.map((item) => {
              v += "<tr>"
            v += "<td>" + item.name + "</td>"
            v += "<td>" + item.age + "</td>"
+           v +=
+           '<td> <button type="button" class="btn btn-primary" onclick= "edit()">Edit</button>   <button type="button" class="btn btn-danger" onclick= "Delete()">Delete</button></td>';
            v += "</tr>";
           
-         });
+       });
       
          document.getElementById("table-name").innerHTML = v;
        }
-
+   

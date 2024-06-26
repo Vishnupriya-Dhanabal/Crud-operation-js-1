@@ -11,12 +11,12 @@
 <body>
   <div class="login">
     <h2 class="in">login</h2>
-  <form  id="form">
+  <form  onsubmit="event.preventDefault(); login();">
     <label class="name" for="name">Name:</label><br>
-    <input  id="name" class="name-class" type="text" name="name" placeholder="       ENTER  YOUR  NAME">
+    <input  id="name" class="name-class" type="text" name="name" placeholder="ENTER  YOUR  NAME">
     <p class="er" id="error1"></p>
     <label  class="age" for="age">Age:</label><br>
-    <input id="age" class="age-class" type="number" name="age" placeholder="        ENTER  YOUR  AGE">
+    <input id="age" class="age-class" type="number" name="age" placeholder="ENTER  YOUR  AGE">
     <p class="er" id="error2"></p>
     <button class="sub" type="submit">Submit</button>
   </div>
@@ -27,6 +27,7 @@
       <tr>
           <th>Name</th>
           <th>Age</th>
+          <th>Action</th>
       </tr>
   </thead>
   <tbody id="table-name">
