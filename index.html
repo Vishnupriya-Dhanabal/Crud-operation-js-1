@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,28 +9,27 @@
 </head>
 <body>
   <div class="login">
-    <h2 class="in">login</h2>
-  <form  onsubmit="event.preventDefault(); login();">
-    <label class="name" for="name">Name:</label><br>
-    <input  id="name" class="name-class" type="text" name="name" placeholder="ENTER  YOUR  NAME">
-    <p class="er" id="error1"></p>
-    <label  class="age" for="age">Age:</label><br>
-    <input id="age" class="age-class" type="number" name="age" placeholder="ENTER  YOUR  AGE">
-    <p class="er" id="error2"></p>
-    <button class="sub" type="submit">Submit</button>
+    <h2 class="in"> LOGIN</h2>
+    <form onsubmit="event.preventDefault(); login();">
+      <label class="naa" for="name">Name</label><br>
+      <input id="name" class="name-class" type="text" name="name" placeholder="ENTER YOUR NAME">
+      <p class="er" id="error1"></p>
+      <label class="age" for="age">Age</label><br>
+      <input id="age" class="name-class" type="number" name="age" placeholder="ENTER YOUR AGE">
+      <p class="er" id="error2"></p>
+      <button class="send" type="submit">Submit</button>
+    </form>
   </div>
-</form>
-
-<table class="table-body" border="1">
-  <thead>
+  <table class="table-body" border="1">
+    <thead>
       <tr>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Action</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Action</th>
       </tr>
-  </thead>
-  <tbody id="table-name">
-  </tbody>
-</table>
-
+    </thead>
+    <tbody id="table-name">
+    </tbody>
+  </table>
+</body>
 </html>
