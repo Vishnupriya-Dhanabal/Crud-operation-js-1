@@ -61,10 +61,11 @@ function edit(index) {
   editIndex = index;
 }
 
-function deleteEntry(index) {
-  data.splice(index, 1);
+ function deleteEntry(index) {
+  data = data.filter((entry, i) => i !== index);
   updateTable();
 }
+
    
 
 
