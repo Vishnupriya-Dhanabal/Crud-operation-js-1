@@ -1,74 +1,88 @@
 let data = [];
-let editIndex = -1;
+    let editIndex = -1;
 
-function login() {
-  const name = document.getElementById('name').value.trim();
-  const age = document.getElementById('age').value.trim();
-  const error1 = document.getElementById('error1');
-  const error2 = document.getElementById('error2');
+    // document.addEventListener('DOMContentLoaded', loadDataFromLocalStorage);
 
-  error1.textContent = '';
-  error2.textContent = '';
+    function login() {
+      const name = document.getElementById('name').value.trim();
+      const age = document.getElementById('age').value.trim();
+      const error1 = document.getElementById('error1');
+      const error2 = document.getElementById('error2');
 
-  let errorMessage = '';
+      error1.textContent = '';
+      error2.textContent = '';
 
-  if (name === "") {
-    errorMessage = '! Fill this Name box';
-    error1.textContent = errorMessage;
-  }
+      let errorMessage = '';
 
-  if (age === "") {
-    errorMessage = '! Fill this Age box';
-    error2.textContent = errorMessage;
-  }
+      if (name === "") {
+        errorMessage = '! Fill this Name box';
+        error1.textContent = errorMessage;
+      }
 
-  if (errorMessage) {
-    return;
-  }
+      if (age === "") {
+        errorMessage = '! Fill this Age box';
+        error2.textContent = errorMessage;
+      }
 
-  const entry = { name, age };
+      if (errorMessage) {
+        return;
+      }
 
-  if (editIndex >= 0) {
-    data[editIndex] = entry;
-    editIndex = -1;
-  } else {
-    data.push(entry);
-  }
+      const entry = { name, age };
 
-  document.getElementById('name').value = '';
-  document.getElementById('age').value = '';
-  console.log(data);
-  updateTable();
-}
+      if (editIndex >= 0) {
+        data[editIndex] = entry;
+        editIndex = -1;
+      } else {
+        data.push(entry);
+      }
 
-function updateTable() {
-  let v = "";
-  data.forEach((item, index) => {
-    v += "<tr>";
-    v += "<td>" + item.name + "</td>";
-    v += "<td>" + item.age + "</td>";
-    v += '<td><button type="button" id="but" onclick="edit(' + index + ')">Edit</button><button type="button" id="ton" onclick="deleteEntry(' + index + ')">Delete</button></td>';
-    v += "</tr>";
-  });
+      document.getElementById('name').value = '';
+      document.getElementById('age').value = '';
 
-  document.getElementById("table-name").innerHTML = v;
-}
+      saveToLocalStorage();
+      updateTable();
+    }
 
-function edit(index) {
-  const entry = data[index];
-  document.getElementById('name').value = entry.name;
-  document.getElementById('age').value = entry.age;
-  editIndex = index;
-}
+    function saveToLocalStorage() {
+      localStorage.setItem('data', JSON.stringify(data));
+    }
 
- function deleteEntry(index) {
-  data = data.filter((entry, i) => i !== index);
-  updateTable();
-}
+    function loadDataFromLocalStorage() {
+      const savedData = localStorage.getItem('data');
+      if (savedData) {
+        data = JSON.parse(savedData);
+        updateTable();
+      }
+    }
 
-   
+    function updateTable() {
 
+      let v = "";
+      data.forEach((item, index) => {
+        v += "<tr>";
+        v += "<td>" + item.name + "</td>";
+        v += "<td>" + item.age + "</td>";
+        v += '<td><button type="button" id="but" onclick="edit(' + index + ')">Edit</button>';
+        v += '<button type="button" id="ton" onclick="deleteEntry(' + index + ')">Delete</button></td>';
+        v += "</tr>";
+      });
 
+      document.getElementById("table-name").innerHTML = v;
+    }
+
+    function edit(index) {
+      const entry = data[index];
+      document.getElementById('name').value = entry.name;
+      document.getElementById('age').value = entry.age;
+      editIndex = index;
+    }
+
+    function deleteEntry(index) {
+      data = data.filter((entry, i) => i !== index);
+      saveToLocalStorage();
+      updateTable();
+    }
 
 
 
